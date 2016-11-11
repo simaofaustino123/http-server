@@ -12,6 +12,7 @@ function login(response) {
 
 function auth(response, postData) {
     console.log('Request handler "Auth" was called')
+    
     let formData = queryString.parse(postData)
     let fileName = isValidUser(formData.email, formData.password) 
                     ? "./success.html" : "./access-denied.html"
@@ -25,7 +26,7 @@ function isValidUser(email, password) {
 }
 
 function responseHTML(response, fileName) {
-    fs.readFile("./index.html", "utf-8", function onReturn(error, data) {
+    fs.readFile(fileName, "utf-8", function onReturn(error, data) {
         if(error) throw error
         response.statusCode = 200
         response.setHeader("Content-Type", "text/html")
